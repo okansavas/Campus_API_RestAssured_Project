@@ -103,7 +103,16 @@ public class US_105 extends US_002 {
                 .statusCode(200);
     }
 
+    @Test(dependsOnMethods = "DeleteStudentGroups")
+    public void DeleteStudentGroupsNegative() {
 
+        given()
+                .spec(reqSpec)
 
+                .when()
+                .delete("/school-service/api/student-group/" + studentGroupsID)
 
+                .then()
+                .statusCode(400);
+    }
 }
