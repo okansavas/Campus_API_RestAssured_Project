@@ -65,8 +65,32 @@ public class US_105 extends US_002 {
 
                 .then()
                 .statusCode(200)
-                .log().body();
-
+        //.log().body();
+        ;
     }
+
+    @Test(dependsOnMethods = "ReadTheStudentGroups")
+    public void UpdateTheStudentGroups() {
+
+        Map<String, Object> updateStudentGroups = new HashMap<>();
+        updateStudentGroups.put("id", studentGroupsID);
+        updateStudentGroups.put("schoolId", schoolID);
+        updateStudentGroups.put("name", randomFaker.book().genre());
+        updateStudentGroups.put("description", randomFaker.commerce().productName());
+
+        given()
+                .spec(reqSpec)
+                .body(updateStudentGroups)
+
+                .when()
+                .put("/school-service/api/student-group/")
+
+                .then()
+                .statusCode(200)
+                .log().body();
+    }
+
+
+
 
 }
