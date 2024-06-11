@@ -1,18 +1,21 @@
+package Utilities;
+
+import com.github.javafaker.Faker;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.http.ContentType;
 import io.restassured.http.Cookies;
 import io.restassured.specification.RequestSpecification;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import static io.restassured.RestAssured.*;
+import static io.restassured.RestAssured.baseURI;
+import static io.restassured.RestAssured.given;
 
-public class US_101 {
+public class Login {
 
-    RequestSpecification reqSpec;
+    public RequestSpecification reqSpec;
 
     @BeforeClass
     public void ValidLogin() {
@@ -42,8 +45,4 @@ public class US_101 {
                 .setContentType(ContentType.JSON)
                 .build();
     }
-
-
-
-
 }
