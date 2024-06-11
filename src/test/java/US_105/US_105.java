@@ -18,8 +18,8 @@ public class US_105 extends US_002 {
 
         newStudentGroups = new HashMap<>();
         newStudentGroups.put("schoolId", schoolID);
-        newStudentGroups.put("name", "Osman" + randomFaker.idNumber());
-        newStudentGroups.put("description", randomFaker.address().latitude());
+        newStudentGroups.put("name", "Osman" + randomFaker.company().catchPhrase());
+        newStudentGroups.put("description", randomFaker.lorem().sentence());
         newStudentGroups.put("active", true);
         newStudentGroups.put("publicGroup", true);
         newStudentGroups.put("showToStudent", true);
@@ -52,6 +52,21 @@ public class US_105 extends US_002 {
 
                 .then()
                 .statusCode(400);
+    }
+
+    @Test(dependsOnMethods = "CreateAStudentGroups")
+    public void ReadTheStudentGroups() {
+
+        given()
+                .spec(reqSpec)
+
+                .when()
+                .get("/school-service/api/student-group/" + studentGroupsID)
+
+                .then()
+                .statusCode(200)
+                .log().body();
+
     }
 
 }

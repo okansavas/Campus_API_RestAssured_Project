@@ -17,7 +17,7 @@ public class US_002 extends Login {
     public void CreateACountry() {
 
         String countryName = randomFaker.address().country() + randomFaker.address().latitude();
-        //System.out.println("countryName = " + countryName);
+        System.out.println("countryName = " + countryName);
         String countryCode = randomFaker.address().countryCode();
 
         Map<String, Object> newCountry = new HashMap<>();
