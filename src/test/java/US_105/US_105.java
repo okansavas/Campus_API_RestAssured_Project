@@ -33,7 +33,6 @@ public class US_105 extends US_002 {
                         .when()
                         .post("/school-service/api/student-group")
 
-
                         .then()
                         .statusCode(201)
                         .extract().path("id");
@@ -64,9 +63,7 @@ public class US_105 extends US_002 {
                 .get("/school-service/api/student-group/" + studentGroupsID)
 
                 .then()
-                .statusCode(200)
-        //.log().body();
-        ;
+                .statusCode(200);
     }
 
     @Test(dependsOnMethods = "ReadTheStudentGroups")
@@ -77,6 +74,9 @@ public class US_105 extends US_002 {
         updateStudentGroups.put("schoolId", schoolID);
         updateStudentGroups.put("name", randomFaker.book().genre());
         updateStudentGroups.put("description", randomFaker.commerce().productName());
+        updateStudentGroups.put("active", true);
+        updateStudentGroups.put("publicGroup", true);
+        updateStudentGroups.put("showToStudent", true);
 
         given()
                 .spec(reqSpec)
@@ -88,6 +88,19 @@ public class US_105 extends US_002 {
                 .then()
                 .statusCode(200)
                 .log().body();
+    }
+
+    @Test(dependsOnMethods = "UpdateTheStudentGroups")
+    public void DeleteStudentGroups() {
+
+        given()
+                .spec(reqSpec)
+
+                .when()
+                .delete("/school-service/api/student-group/" + studentGroupsID)
+
+                .then()
+                .statusCode(200);
     }
 
 
