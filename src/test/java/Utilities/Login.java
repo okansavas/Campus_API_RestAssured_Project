@@ -16,6 +16,8 @@ import static io.restassured.RestAssured.given;
 public class Login {
 
     public RequestSpecification reqSpec;
+    public String schoolID = "6576fd8f8af7ce488ac69b89";
+    public Faker randomFaker = new Faker();
 
     @BeforeClass
     public void ValidLogin() {
@@ -38,7 +40,7 @@ public class Login {
                         .statusCode(200)
                         .extract().response().getDetailedCookies();
 
-        System.out.println("responseCookies = " + responseCookies);
+        //System.out.println("responseCookies = " + responseCookies);
 
         reqSpec = new RequestSpecBuilder()
                 .addCookies(responseCookies)
