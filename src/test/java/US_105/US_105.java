@@ -10,7 +10,7 @@ import static io.restassured.RestAssured.given;
 
 public class US_105 extends US_002 {
 
-    String studentGroupsID;
+    public String studentGroupsID;
     Map<String, Object> newStudentGroups;
 
     @Test
@@ -36,7 +36,7 @@ public class US_105 extends US_002 {
                         .then()
                         .statusCode(201)
                         .extract().path("id");
-        //System.out.println("studentGroupsID = " + studentGroupsID);
+        System.out.println("studentGroupsID = " + studentGroupsID);
     }
 
     @Test(dependsOnMethods = "CreateAStudentGroups")
