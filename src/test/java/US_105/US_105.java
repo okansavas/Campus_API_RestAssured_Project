@@ -36,7 +36,7 @@ public class US_105 extends US_002 {
                         .then()
                         .statusCode(201)
                         .extract().path("id");
-        System.out.println("studentGroupsID = " + studentGroupsID);
+       // System.out.println("studentGroupsID = " + studentGroupsID);
     }
 
     @Test(dependsOnMethods = "CreateAStudentGroups")

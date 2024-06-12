@@ -37,7 +37,7 @@ public class US_106 extends US_002 {
                         .then()
                         .statusCode(201)
                         .extract().path("id");
-        System.out.println("studentGroupsID = " + studentGroupsID);
+        // System.out.println("studentGroupsID = " + studentGroupsID);
     }
 
     @Test
@@ -49,8 +49,26 @@ public class US_106 extends US_002 {
         given()
                 .spec(reqSpec)
                 .body(newStudents)
+                .queryParam("page", 0)
+                .queryParam("size", 10)
+
                 .when()
-                .post("/school-service/api/student-group/" + studentGroupsID + "/add-students?page=0&size=10")
+                .post("/school-service/api/student-group/" + studentGroupsID + "/add-students")  // ?page=0&size=10
+                .then()
+                .statusCode(200);
+    }
+
+    @Test(dependsOnMethods = "CreateStudents")
+    public void ReadStudents() {
+
+        given()
+                .spec(reqSpec)
+                .queryParam("page", 0)
+                .queryParam("size", 10)
+
+                .when()
+                .get("/school-service/api/students/group/" + studentGroupsID)
+
                 .then()
                 .log().body()
                 .statusCode(200);
